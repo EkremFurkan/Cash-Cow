@@ -1,0 +1,17 @@
+﻿using CommonBase.Attributes;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace CashCow.Contracts.Persistence.CashCow
+{
+    [ContractInfo(ContextType = ContextType.Table)]
+    public partial interface IPayment : IVersionable, ICopyable<IPayment>
+    {
+        public DateTime Date { get; set; }
+        public IParticipant Participant { get; set; }
+        public double Amount { get; set; }
+        [ContractPropertyInfo(Required = true, MaxLength = 256, IsUnique = true)]
+        public string Title { get; set; }
+    }
+}
